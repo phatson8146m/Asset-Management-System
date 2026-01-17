@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "rALN6zZqSAo1fPG8NDj4sYWe3DyvNFo/jYeWjVPEvGA=",
+  "Source": "AssetManagementApi",
+  "BasePath": "_content/AssetManagementApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

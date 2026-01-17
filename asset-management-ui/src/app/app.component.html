@@ -1,0 +1,52 @@
+<p-toast></p-toast>
+
+<div class="card p-4">
+  <h2>Asset Management System</h2>
+  <p-button label="Add New Asset" icon="pi pi-plus" (click)="showDialog()"></p-button>
+
+  <p-table [value]="assets" styleClass="p-datatable-striped mt-3">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Serial No.</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-asset>
+      <tr>
+        <td>{{ asset.assetName }}</td>
+        <td>{{ asset.category?.name }}</td>
+        <td>{{ asset.serialNumber }}</td>
+        <td>
+          <p-button icon="pi pi-pencil" styleClass="p-button-text" (click)="showDialog(asset)"></p-button>
+          <p-button icon="pi pi-trash" styleClass="p-button-text p-button-danger" (click)="deleteAsset(asset.id)"></p-button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog [(visible)]="displayDialog" [header]="dialogHeader" [modal]="true" [style]="{width: '400px'}">
+  <form [formGroup]="assetForm" (ngSubmit)="saveAsset()">
+    <div class="flex flex-column gap-2 mb-3">
+      <label>Asset Name</label>
+      <input pInputText formControlName="assetName" class="w-full" />
+    </div>
+
+    <div class="flex flex-column gap-2 mb-3">
+      <label>Category</label>
+      <p-dropdown [options]="categories" formControlName="categoryId" optionLabel="name" optionValue="id" placeholder="Select Category" [style]="{'width':'100%'}"></p-dropdown>
+    </div>
+
+    <div class="flex flex-column gap-2 mb-3">
+      <label>Serial Number</label>
+      <input pInputText formControlName="serialNumber" class="w-full" />
+    </div>
+
+    <div class="flex justify-content-end gap-2 mt-4">
+      <p-button label="Cancel" styleClass="p-button-secondary" (click)="displayDialog=false"></p-button>
+      <p-button label="Save" type="submit" [disabled]="assetForm.invalid"></p-button>
+    </div>
+  </form>
+</p-dialog>
